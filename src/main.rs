@@ -1,14 +1,13 @@
 #[allow(dead_code)]
 mod meminfo;
 mod cpuinfo;
-
 mod proc_status;
 //mod meminfo_wh;
 
 fn main() {
     println!("Hello, sumoworld!");
 
-    //let a = cpuinfo::get_cpuinfo();
+    let a = cpuinfo::get_cpuinfo();
 
     //println!("{:#?}", a[3].apicid); 
 
