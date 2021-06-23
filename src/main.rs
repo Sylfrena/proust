@@ -1,6 +1,6 @@
+mod cpuinfo;
 #[allow(dead_code)]
 mod meminfo;
-mod cpuinfo;
 mod proc_status;
 //mod meminfo_wh;
 
@@ -9,7 +9,7 @@ fn main() {
 
     let a = cpuinfo::get_cpuinfo();
 
-    //println!("{:#?}", a[3].apicid); 
+    //println!("{:#?}", a[3].apicid);
 
     //let a = meminfo::get_meminfo();
 
@@ -19,5 +19,4 @@ fn main() {
         Err(e) => println!("Error: {:#?}", e),
     }*/
     //assert_eq!(meminfo_wh::get_meminfo(), meminfo::get_meminfo());
-
 }

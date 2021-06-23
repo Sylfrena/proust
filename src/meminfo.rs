@@ -113,16 +113,15 @@ impl Meminfo {
             direct_map4k: 0,
             direct_map2_m: 0,
             direct_map1_g: 0,
-        } 
+        }
     }
 
     fn get_meminfo_values(mut self, file_content: &str) -> Meminfo {
-        
         let content: Vec<&str> = file_content.split_terminator('\n').collect();
         for x in content.iter() {
             let arr: Vec<&str> = x.split(':').collect();
             let value = arr[1].trim_end_matches("kB").trim().parse::<u64>().unwrap();
-    
+
             match arr[0].trim() {
                 "MemTotal" => self.mem_total = value,
                 "MemFree" => self.mem_free = value,
@@ -189,15 +188,16 @@ pub fn get_meminfo() -> Meminfo {
     Meminfo::get_meminfo_values(Meminfo::new(), &file_content)
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*; //without this all the above stuff goes outta scope in tests
     #[test]
     fn meminfo_values_test() {
-        let file_content = String::from("Hugepagesize: 478
+        let file_content = String::from(
+            "Hugepagesize: 478
                                          Hugetlb: 47800
-                                         DirectMap4k: 000");
+                                         DirectMap4k: 000",
+        );
         let meminfo = Meminfo::get_meminfo_values(Meminfo::new(), &file_content);
         assert_eq!(meminfo.hugetlb, 47800);
         assert_eq!(meminfo.hugepagesize, 478);

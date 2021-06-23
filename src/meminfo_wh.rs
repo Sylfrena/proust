@@ -1,8 +1,5 @@
-use std::fs;
 use std::collections::HashMap;
-
-
-
+use std::fs;
 
 #[derive(Debug)]
 pub struct Meminfo {
@@ -63,14 +60,17 @@ pub struct Meminfo {
 
 pub fn get_value(arg: &str) -> u64 {
     let content = fs::read_to_string("/proc/meminfo").expect("messed up reading the file");
-    
-    let a: Vec<&str> = content.split_terminator('\n').collect();    
+
+    let a: Vec<&str> = content.split_terminator('\n').collect();
 
     let mut map = HashMap::new();
 
     for v in a.iter() {
         let d: Vec<&str> = v.split(':').collect();
-        map.insert(d[0], d[1].trim_end_matches("kB").trim().parse::<u64>().unwrap());
+        map.insert(
+            d[0],
+            d[1].trim_end_matches("kB").trim().parse::<u64>().unwrap(),
+        );
     }
 
     let value = map.get(arg);
@@ -79,7 +79,6 @@ pub fn get_value(arg: &str) -> u64 {
         None => 0,
     }
 }
-
 
 pub fn new() -> Meminfo {
     Meminfo {
