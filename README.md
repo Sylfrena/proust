@@ -1,4 +1,10 @@
 # proust
 Rust library for procfs
 
-(WIP, which is why it is still a binary(for now))
+A Rust library for fetching information from the proc filesystem at `/proc`.
+
+Currently, `proust` supports the following procfs interfaces:
+
+- __/proc/cpuinfo__ : ```module cpuinfo``` 
+- __/proc/\<pid>/status__ : `module proc_status`
+- __/proc/meminfo__ : `module meminfo`
