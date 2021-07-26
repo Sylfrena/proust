@@ -140,7 +140,7 @@ impl ProcStatus {
                 "Mems_allowed_list" => self.mems_allowed_list = value,
                 "voluntary_ctxt_switches" => self.voluntary_ctxt_switches = value,
                 "nonvoluntary_ctxt_switches" => self.nonvoluntary_ctxt_switches = val,
-                _ => println!("no such field"),
+                _ => println!("no such field: {:?}", arr[0]),
             }
         }
         self
